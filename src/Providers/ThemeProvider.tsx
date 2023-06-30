@@ -25,6 +25,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     savedTheme = "dark";
     localStorage.setItem("theme", "dark");
     document.documentElement.classList.add("dark");
+    document.body.classList.add("dark:text-white");
+    document.body.classList.add("dark:bg-dark");
   }
   const [mode, setMode] = useState(savedTheme);
 
@@ -33,6 +35,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
       setMode("dark");
       localStorage.setItem("theme", "dark");
       document.documentElement.classList.add("dark");
+      document.body.classList.add("dark:text-white");
+      document.body.classList.add("dark:bg-dark");
     } else {
       setMode("light");
       localStorage.setItem("theme", "light");

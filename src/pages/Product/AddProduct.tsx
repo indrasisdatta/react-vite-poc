@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
-import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
+import { ArrowLeftIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { useMutation } from "react-query";
 import { addProduct } from "../../api/ApiService";
 import { ErrorAlert } from "../../common/components/ErrorAlert";
 import { Loader } from "../../common/components/Loader";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 type FormValues = {
   title: string;
@@ -65,11 +65,11 @@ export const AddProduct: React.FC = () => {
   };
 
   const getInputClass = (field: string) => {
-    let commonClasses = `w-full flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6 focus-within:rounded-md focus-within:ring-1 focus-within:ring-inset focus-visible:outline-none `;
+    let commonClasses = `w-full flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 dark:text-gray-200 placeholder:text-gray-400 sm:text-sm sm:leading-6 focus-within:rounded-md focus-within:ring-1 focus-within:ring-inset focus-visible:outline-none `;
     if (hasError(field)) {
       commonClasses += `focus-within:ring-red-800`;
     } else {
-      commonClasses += `focus-within:ring-blue-800`;
+      commonClasses += `focus-within:ring-blue-800 dark:focus-within:ring-blue-400`;
     }
     return commonClasses;
   };
@@ -105,7 +105,12 @@ export const AddProduct: React.FC = () => {
 
   return (
     <div className="container mx-auto p-8">
-      <h1 className="text-2xl font-bold mb-4">Add Product</h1>
+      <h1 className="text-2xl font-bold mb-4 flex">
+        <NavLink to="" onClick={() => navigate(-1)}>
+          <ArrowLeftIcon className="h-8 w-5 stroke-4" />
+        </NavLink>
+        <span className="ml-3">Add Product</span>
+      </h1>
       {isError && (
         <ErrorAlert
           errorMsg={(error as Error)?.message}
@@ -122,7 +127,9 @@ export const AddProduct: React.FC = () => {
             <label
               htmlFor="title"
               className={`block text-sm font-medium leading-6 ${
-                hasError("title") ? "text-red-600" : "text-gray-900"
+                hasError("title")
+                  ? "text-red-600"
+                  : "text-gray-900 dark:text-gray-200"
               }`}
             >
               Product Name
@@ -162,7 +169,9 @@ export const AddProduct: React.FC = () => {
             <label
               htmlFor="price"
               className={`block text-sm font-medium leading-6 ${
-                hasError("price") ? "text-red-600" : "text-gray-900"
+                hasError("price")
+                  ? "text-red-600"
+                  : "text-gray-900 dark:text-gray-200"
               }`}
             >
               Price
@@ -211,7 +220,9 @@ export const AddProduct: React.FC = () => {
           <div className="w-full">
             <label
               className={`block text-sm font-medium leading-6 ${
-                hasError("description") ? "text-red-600" : "text-gray-900"
+                hasError("description")
+                  ? "text-red-600"
+                  : "text-gray-900 dark:text-gray-200"
               }`}
             >
               Description
@@ -221,7 +232,7 @@ export const AddProduct: React.FC = () => {
                 <textarea
                   // name="description"
                   id="description"
-                  //className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                  //className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 dark:text-gray-200 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                   className={`${getInputClass("description")}`}
                   placeholder="Product Description"
                   {...register("description", {
@@ -243,7 +254,9 @@ export const AddProduct: React.FC = () => {
         <div className="w-full md:w-1/2 ">
           <div
             className={`flex justify-between text-sm font-medium leading-6 ${
-              hasError("tags") ? "text-red-600" : "text-gray-900"
+              hasError("tags")
+                ? "text-red-600"
+                : "text-gray-900 dark:text-gray-200"
             }`}
           >
             <label>Tags</label>

@@ -19,7 +19,7 @@ export const ThemeSwitch = () => {
   return (
     <div>
       <label
-        className="inline-block pl-[0.15rem] hover:cursor-pointer mr-2"
+        className="inline-block pl-[0.15rem] hover:cursor-pointer mr-2 "
         htmlFor="flexSwitchCheckDefault"
       >
         Light
@@ -29,7 +29,6 @@ export const ThemeSwitch = () => {
         type="checkbox"
         role="switch"
         id="flexSwitchCheckDefault"
-        // value={isDark}
         checked={mode === "dark"}
         onChange={(e) => toggleTheme(e.target.checked)}
       />

@@ -88,11 +88,11 @@ export const EditProduct: React.FC = () => {
   };
 
   const getInputClass = (field: string) => {
-    let commonClasses = `w-full flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6 focus-within:rounded-md focus-within:ring-1 focus-within:ring-inset focus-visible:outline-none `;
+    let commonClasses = `w-full flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 dark:text-gray-200 placeholder:text-gray-400 sm:text-sm sm:leading-6 focus-within:rounded-md focus-within:ring-1 focus-within:ring-inset focus-visible:outline-none `;
     if (hasError(field)) {
       commonClasses += `focus-within:ring-red-800`;
     } else {
-      commonClasses += `focus-within:ring-blue-800`;
+      commonClasses += `focus-within:ring-blue-800 dark:focus-within:ring-blue-400`;
     }
     return commonClasses;
   };
@@ -160,7 +160,9 @@ export const EditProduct: React.FC = () => {
               <label
                 htmlFor="title"
                 className={`block text-sm font-medium leading-6 ${
-                  hasError("title") ? "text-red-600" : "text-gray-900"
+                  hasError("title")
+                    ? "text-red-600"
+                    : "text-gray-900 dark:text-gray-200"
                 }`}
               >
                 Product Name
@@ -200,7 +202,9 @@ export const EditProduct: React.FC = () => {
               <label
                 htmlFor="price"
                 className={`block text-sm font-medium leading-6 ${
-                  hasError("price") ? "text-red-600" : "text-gray-900"
+                  hasError("price")
+                    ? "text-red-600"
+                    : "text-gray-900 dark:text-gray-200"
                 }`}
               >
                 Price
@@ -249,7 +253,9 @@ export const EditProduct: React.FC = () => {
             <div className="w-full">
               <label
                 className={`block text-sm font-medium leading-6 ${
-                  hasError("description") ? "text-red-600" : "text-gray-900"
+                  hasError("description")
+                    ? "text-red-600"
+                    : "text-gray-900 dark:text-gray-200"
                 }`}
               >
                 Description
@@ -281,7 +287,9 @@ export const EditProduct: React.FC = () => {
           <div className="w-full md:w-1/2 ">
             <div
               className={`flex justify-between text-sm font-medium leading-6 ${
-                hasError("tags") ? "text-red-600" : "text-gray-900"
+                hasError("tags")
+                  ? "text-red-600"
+                  : "text-gray-900 dark:text-gray-200"
               }`}
             >
               <label>Tags</label>
