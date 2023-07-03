@@ -11,10 +11,14 @@
 
 https://tonie.hashnode.dev/dockerizing-your-react-app-a-step-by-step-guide
 
-Terminal commands:
+Terminal commands (manual):
 
 `docker build -t react-vite-poc . -f .\Dockerfile.dev`
 
 `docker run -p 5173:5173 react-vite-poc`
 
 URL: http://localhost:5173/
+
+### Env based docker-compose config
+ - Local environment: `docker-compose --env-file .env.local up -d`
+ - Production environment: `docker-compose --env-file .env.prod up -d`
