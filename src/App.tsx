@@ -1,5 +1,5 @@
 import { AppRouter } from "./AppRouter";
-import { BrowserRouter, NavLink, Outlet } from "react-router-dom";
+import { BrowserRouter, NavLink } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ThemeProvider } from "./Providers/ThemeProvider";
 import { ThemeSwitch } from "./common/components/ThemeSwitch";

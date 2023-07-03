@@ -6,5 +6,11 @@ export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
     exclude: ['react-hook-form'],
+  },
+  server: {
+    watch: {usePolling: true},
+    host: true,
+    strictPort: true,
+    port: 5173
   }
 })

@@ -1,13 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Loader } from "./common/components/Loader";
 import { PageLoader } from "./common/components/PageLoader";
 import { EditProduct } from "./pages/Product/EditProduct";
-// import { AddProduct } from "./pages/Product/AddProduct";
-// import ProductsList from "./pages/Product/ProductsList";
-// import { Dashboard } from "./pages/Dashboard";
-
-// const Dashboard = lazy(() => import("./pages/Dashboard"));
 
 const Dashboard = lazy(() =>
   import("./pages/Dashboard").then((module) => {
