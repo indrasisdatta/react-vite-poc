@@ -11,6 +11,9 @@ Tailwind dark/light theme: https://tailwindcss.com/docs/theme
 
 Docker configuration: https://tonie.hashnode.dev/dockerizing-your-react-app-a-step-by-step-guide
 Terminal commands:
+
 docker build -t react-vite-poc . -f .\Dockerfile.dev
+
 docker run -p 5173:5173 react-vite-poc
+
 URL: http://localhost:5173/
