@@ -1,0 +1,16 @@
+version: '3'
+services:
+  ui:
+    stdin_open: true 
+    build:
+      context: .
+      args:
+        - nginxFile=nginx.conf
+      dockerfile: ${DOCKER_FILENAME}
+    ports: 
+      - "${PORT}:${PORT}"
+    environment:
+      - ENVIRONMENT:${ENVIRONMENT} 
+    volumes:
+      - "/react-vite-build/node_modules"
+      - "./:/react-vite-build"
