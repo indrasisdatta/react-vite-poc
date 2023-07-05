@@ -7,11 +7,11 @@
  - [React hooks form](https://www.youtube.com/watch?v=KejZXxFCe2k&list=PLC3y8-rFHvwjmgBr1327BA5bVXoQH-w5s&index=1)
  - [Tailwind dark/light theme](https://tailwindcss.com/docs/theme)
 
-### Docker configuration
+## Docker configuration
 
-https://tonie.hashnode.dev/dockerizing-your-react-app-a-step-by-step-guide
+[Ref doc](https://tonie.hashnode.dev/dockerizing-your-react-app-a-step-by-step-guide)
 
-Terminal commands (manual):
+### Docker build manual commands (Dev build):
 
 `docker build -t react-vite-poc . -f .\Dockerfile.dev`
 
@@ -19,6 +19,15 @@ Terminal commands (manual):
 
 URL: http://localhost:5173/
 
-### Env based docker-compose config
- - Local environment: `docker-compose --env-file .env.local up -d`
- - Production environment: `docker-compose --env-file .env.prod up -d`
+### Docker single command using docker-compose
+
+ - Local environment: Uses Dockerfile.dev to build React app and serve using `npm run build`, just as we do it in local.
+   `docker-compose --env-file .env.local up -d`
+   
+ - Production environment: Uses Multi-stage build to build Docker image.
+   Stage 1 - Build React app.
+   Stage 2 - Use nginx to serve the builr React app.
+   
+   `docker-compose --env-file .env.prod up -d`
+
+
