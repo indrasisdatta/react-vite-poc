@@ -25,7 +25,7 @@ export const ProductsList: React.FC = () => {
     fetchProducts
   );
 
-  //   console.log("Check useProducts", useProducts);
+  console.log("Check Products", isSuccess, isError, isLoading, data, error);
 
   return (
     <div className="container mx-auto p-8">
