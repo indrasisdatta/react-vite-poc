@@ -26,8 +26,7 @@ URL: http://localhost:5173/
    
  - Production environment: Uses Multi-stage build to build Docker image.
    
-   Stage 1 - Build React app.
-   
+   Stage 1 - Build React app.   
    Stage 2 - Use nginx to serve the builr React app.   
    `docker-compose --env-file .env.prod up -d`
 
