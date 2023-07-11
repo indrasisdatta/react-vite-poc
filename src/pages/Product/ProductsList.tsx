@@ -49,7 +49,10 @@ export const ProductsList: React.FC = () => {
         </NavLink>
       </div>
       <div>
-        <table className="md:w-full min-w-max table-auto text-left">
+        <table
+          className="md:w-full min-w-max table-auto text-left"
+          data-testid="product-table"
+        >
           <thead>
             <tr>
               <th className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-2">
@@ -79,7 +82,7 @@ export const ProductsList: React.FC = () => {
               </tr>
             ) : null}
             {isLoading ? (
-              <tr>
+              <tr data-testid="loader">
                 <td className="text-center" colSpan={5}>
                   <Loader className="mt-14" />
                 </td>

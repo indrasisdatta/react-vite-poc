@@ -120,7 +120,11 @@ export const AddProduct: React.FC = () => {
         />
       )}
       {isLoading && <Loader className="m-auto mt-3" />}
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <form
+        data-testid="productForm"
+        onSubmit={handleSubmit(onSubmit)}
+        noValidate
+      >
         {/* <div className="mt-3 grid grid-cols-2 gap-4"> */}
         <div className="md:flex mb-4">
           <div className="w-full md:w-1/2 ">
@@ -132,7 +136,7 @@ export const AddProduct: React.FC = () => {
                   : "text-gray-900 dark:text-gray-200"
               }`}
             >
-              Product Name
+              Prduct Name
             </label>
             <div className="mt-1">
               <div className={getInputDivClass("title")}>
@@ -219,6 +223,7 @@ export const AddProduct: React.FC = () => {
         <div className="mb-4">
           <div className="w-full">
             <label
+              htmlFor="description"
               className={`block text-sm font-medium leading-6 ${
                 hasError("description")
                   ? "text-red-600"
@@ -230,9 +235,7 @@ export const AddProduct: React.FC = () => {
             <div className="mt-1">
               <div className={`${getInputDivClass("description")} sm:w-9/12`}>
                 <textarea
-                  // name="description"
                   id="description"
-                  //className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 dark:text-gray-200 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                   className={`${getInputClass("description")}`}
                   placeholder="Product Description"
                   {...register("description", {
@@ -272,8 +275,9 @@ export const AddProduct: React.FC = () => {
                   <input
                     key={field.id}
                     type="text"
-                    className={getInputClass("tags")}
+                    className={`${getInputClass("tags")} tag`}
                     placeholder="Enter Tag"
+                    data-testid={`tag-${field.id}`}
                     {...register(`tags.${index}.tag` as any, {
                       required: {
                         value: true,
@@ -286,6 +290,7 @@ export const AddProduct: React.FC = () => {
                       type="button"
                       className="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
                       onClick={() => append({ tag: "" })}
+                      data-testid="add-btn"
                     >
                       <PlusIcon className="h-4 w-4" />
                     </button>
@@ -295,6 +300,7 @@ export const AddProduct: React.FC = () => {
                       type="button"
                       className="ml-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
                       onClick={() => remove(index)}
+                      data-testid={`del-btn-${index}`}
                     >
                       <TrashIcon className="h-4 w-4" />
                     </button>
@@ -304,7 +310,7 @@ export const AddProduct: React.FC = () => {
                   (errors as Error)?.tags?.length > 0 &&
                   (errors as Error)?.tags[index].tag?.message && (
                     <span className="inline-flex text-sm text-red-700">
-                      {(errors as Error)?.tags[index].tag[index]?.message}
+                      {(errors as Error)?.tags[index].tag?.message}
                     </span>
                   )}
               </>
