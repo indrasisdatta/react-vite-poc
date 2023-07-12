@@ -7,17 +7,19 @@ import {
   loadedError,
   loadedSuccess,
 } from "../../mock/products/ProductsListMock";
+import { server } from "../../mock/server";
+import { rest } from "msw";
 // import { mockedFunctions } from "../../mockFunctions";
 
 const queryclient = new QueryClient({
   defaultOptions: {
-    queries: {
-      retry: false,
-    },
+    // queries: {
+    //   retry: false,
+    // },
   },
 });
 
-beforeEach(() => {
+/* beforeEach(() => {
   vi.mock("react-query", async () => ({
     ...(await vi.importActual<typeof import("react-query")>("react-query")),
     useQuery: () => {
@@ -43,7 +45,7 @@ beforeEach(() => {
       }
     },
   }));
-});
+}); */
 
 describe("Products List", () => {
   test("Check loader", async () => {
@@ -67,20 +69,30 @@ describe("Products List", () => {
     // await waitFor(() => {
     //   screen.debug();
     // });
-
-    const prodTable = await screen.findByTestId("product-table");
-    expect(prodTable.children.length).toBe(2);
+    await waitFor(async () => {
+      const prodTable = await screen.findByTestId("product-table");
+      // const tableRows = await screen.findAllByRole("row");
+      console.log("Prod table", prodTable.children.length);
+      expect(prodTable.children.length).toBe(4);
+    });
   });
 
   test("API Error - check error message", async () => {
-    render(
-      <QueryClientProvider client={queryclient}>
-        <ProductsList />
-      </QueryClientProvider>
+    server.use(
+      rest.get("https://dummyjson.com/products", async (req, res, ctx) => {
+        return res(ctx.status(500));
+      })
     );
-    // screen.debug();
-    const errorLabel = await screen.findByText(/Error fetching records/);
-    expect(errorLabel).toBeInTheDocument();
+    waitFor(async () => {
+      render(
+        <QueryClientProvider client={queryclient}>
+          <ProductsList />
+        </QueryClientProvider>
+      );
+      screen.debug();
+      const errorLabel = await screen.findByText(/Error fetching records/);
+      expect(errorLabel).toBeInTheDocument();
+    });
   });
 
   test("Save success label", async () => {

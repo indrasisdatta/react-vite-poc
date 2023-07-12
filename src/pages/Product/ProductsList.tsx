@@ -26,6 +26,7 @@ export const ProductsList: React.FC = () => {
   );
 
   console.log("Check Products", isSuccess, isError, isLoading, data, error);
+  console.log("Products: ", data);
 
   return (
     <div className="container mx-auto p-8">
@@ -49,10 +50,7 @@ export const ProductsList: React.FC = () => {
         </NavLink>
       </div>
       <div>
-        <table
-          className="md:w-full min-w-max table-auto text-left"
-          data-testid="product-table"
-        >
+        <table className="md:w-full min-w-max table-auto text-left">
           <thead>
             <tr>
               <th className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-2">
@@ -72,7 +70,7 @@ export const ProductsList: React.FC = () => {
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody data-testid="product-table">
             {isError ? (
               <tr>
                 <td className="text-center p-12" colSpan={5}>
@@ -89,7 +87,7 @@ export const ProductsList: React.FC = () => {
               </tr>
             ) : null}
             {isSuccess
-              ? data?.products.map((product: Product) => (
+              ? data?.products?.map((product: Product) => (
                   <tr key={product.id} className="even:bg-blue-gray-50/50">
                     <td>{product.title}</td>
                     <td>{product.category}</td>

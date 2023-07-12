@@ -12,12 +12,12 @@ const queryclient = new QueryClient({
   },
 });
 
-beforeEach(() => {
-  vi.mock("react-query", async () => ({
-    ...(await vi.importActual<typeof import("react-query")>("react-query")),
-    useQuery: () => editProductData,
-  }));
-});
+// beforeEach(() => {
+//   vi.mock("react-query", async () => ({
+//     ...(await vi.importActual<typeof import("react-query")>("react-query")),
+//     useQuery: () => editProductData,
+//   }));
+// });
 
 describe("Edit Product", async () => {
   test("Render all fields correctly", async () => {
