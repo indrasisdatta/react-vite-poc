@@ -111,9 +111,7 @@ describe("Add Product", () => {
       description: "Desc",
       tags: [{ tag: "tag1" }],
     };
-    const mockSubmit = vi.fn((data) => {
-      return Promise.resolve(data);
-    });
+    const mockSubmit = vi.fn();
 
     // const originalUseForm = useForm<FormValues>({
     //   defaultValues: {
@@ -150,9 +148,11 @@ describe("Add Product", () => {
     //   };
     // });
 
+    const onSubmit = mockSubmit(formData);
+
     render(
       <QueryClientProvider client={queryclient}>
-        <AddProduct onSubmit={mockSubmit(formData)} />
+        <AddProduct {...onSubmit} />
       </QueryClientProvider>
     );
     const titleInput = await screen.findByPlaceholderText(/Product Name/);

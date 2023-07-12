@@ -16,6 +16,9 @@ RUN npm install
 # Copy everything from our local dir to the container image dir
 COPY . /react-vite-build/
 
+# Run unit test
+RUN npm run test-check
+
 # Prod build
 RUN npm run build
 

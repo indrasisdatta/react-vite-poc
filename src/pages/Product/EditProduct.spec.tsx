@@ -159,9 +159,10 @@ describe("Edit Product", async () => {
       description: "Desc",
       tags: [{ tag: "tag1" }],
     };
-    const mockSubmit = vi.fn((data) => {
-      return Promise.resolve(data);
-    });
+    // const mockSubmit = vi.fn((data) => {
+    //   return Promise.resolve(data);
+    // });
+    const mockSubmit = vi.fn();
 
     // const originalUseForm = useForm<FormValues>({
     //   defaultValues: {
@@ -198,9 +199,10 @@ describe("Edit Product", async () => {
     //   };
     // });
 
+    const onSubmit = mockSubmit(formData);
     render(
       <QueryClientProvider client={queryclient}>
-        <EditProduct onSubmit={mockSubmit(formData)} />
+        <EditProduct {...onSubmit} />
       </QueryClientProvider>
     );
     waitFor(async () => {
