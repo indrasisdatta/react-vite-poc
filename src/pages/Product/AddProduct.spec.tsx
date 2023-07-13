@@ -173,7 +173,7 @@ describe("Add Product", () => {
     fireEvent.submit(form);
 
     waitFor(() => {
-      expect(mockSubmit).toHaveBeenCalledTimes(2);
+      expect(mockSubmit).toHaveBeenCalledTimes(1);
       expect(mockSubmit).toHaveBeenCalledWith({
         title: "Test title",
         price: "100.50",

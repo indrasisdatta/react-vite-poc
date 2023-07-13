@@ -10,7 +10,7 @@
     "check-linting-warnings": "eslint src --ext ts,tsx --max-warnings 0 --report-unused-disable-directives || echo 'Linting failed due to warnings.' && exit 1",
     "preview": "vite preview",
     "test": "set REACT_APP_TEST_ENV=true && vitest",
-    "test-check": "set REACT_APP_TEST_ENV=true vitest --no-watch",
+    "test-check": "set REACT_APP_TEST_ENV=true && vitest --no-watch",
     "prepare": "husky install"
   },
   "husky": {
