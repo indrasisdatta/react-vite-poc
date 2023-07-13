@@ -3,10 +3,10 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { ProductsList } from "./ProductsList";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { vi } from "vitest";
-import {
-  loadedError,
-  loadedSuccess,
-} from "../../mock/products/ProductsListMock";
+// import {
+//   loadedError,
+//   loadedSuccess,
+// } from "../../mock/products/ProductsListMock";
 import { server } from "../../mock/server";
 import { rest } from "msw";
 // import { mockedFunctions } from "../../mockFunctions";
@@ -79,7 +79,7 @@ describe("Products List", () => {
 
   test("API Error - check error message", async () => {
     server.use(
-      rest.get("https://dummyjson.com/products", async (req, res, ctx) => {
+      rest.get("https://dummyjson.com/products", async (_req, res, ctx) => {
         return res(ctx.status(500));
       })
     );

@@ -4,9 +4,15 @@ import "./index.css";
 import { App } from "./App";
 
 if (process.env.NODE_ENV === "development") {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { worker } = require("./mock/browser");
-  worker.start();
+  if (
+    typeof process !== "undefined" &&
+    process?.env?.REACT_APP_TEST_ENV === "true"
+  ) {
+    // const { worker } = require("./mock/browser");
+    import("./mock/browser").then(({ worker }) => {
+      worker.start();
+    });
+  }
 }
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(

@@ -8,13 +8,14 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "vitest",
-    "test-check": "vitest --no-watch"
+    "test": "set REACT_APP_TEST_ENV=true && vitest",
+    "test-check": "set REACT_APP_TEST_ENV=true vitest --no-watch"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@tailwindcss/forms": "^0.5.3",
     "axios": "^1.4.0",
+    "dotenv": "^16.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.0",
