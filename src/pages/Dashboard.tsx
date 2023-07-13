@@ -13,6 +13,7 @@ export const Dashboard = () => {
           <li>React Query</li>
           <li>React hook form </li>
           <li>Tailwind CSS</li>
+          <li>Dockerize build based on local and prod env vars</li>
         </ul>
       </div>
     </div>

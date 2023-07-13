@@ -25,7 +25,8 @@ export const ProductsList: React.FC = () => {
     fetchProducts
   );
 
-  //   console.log("Check useProducts", useProducts);
+  console.log("Check Products", isSuccess, isError, isLoading, data, error);
+  console.log("Products: ", data);
 
   return (
     <div className="container mx-auto p-8">
@@ -69,7 +70,7 @@ export const ProductsList: React.FC = () => {
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody data-testid="product-table">
             {isError ? (
               <tr>
                 <td className="text-center p-12" colSpan={5}>
@@ -79,14 +80,14 @@ export const ProductsList: React.FC = () => {
               </tr>
             ) : null}
             {isLoading ? (
-              <tr>
+              <tr data-testid="loader">
                 <td className="text-center" colSpan={5}>
                   <Loader className="mt-14" />
                 </td>
               </tr>
             ) : null}
             {isSuccess
-              ? data?.products.map((product: Product) => (
+              ? data?.products?.map((product: Product) => (
                   <tr key={product.id} className="even:bg-blue-gray-50/50">
                     <td>{product.title}</td>
                     <td>{product.category}</td>

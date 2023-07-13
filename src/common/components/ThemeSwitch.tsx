@@ -31,6 +31,7 @@ export const ThemeSwitch = () => {
         id="flexSwitchCheckDefault"
         checked={mode === "dark"}
         onChange={(e) => toggleTheme(e.target.checked)}
+        data-testid="theme-switch"
       />
       <label
         className="inline-block pl-[0.15rem] hover:cursor-pointer"

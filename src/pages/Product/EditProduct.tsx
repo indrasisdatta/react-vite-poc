@@ -23,7 +23,7 @@ interface Error {
 
 export const EditProduct: React.FC = () => {
   const [isOpenSucAlert, setIsOpenSucAlert] = useState(true);
-  const { prodId } = useParams();
+  const { prodId } = useParams() || { prodId: null };
 
   /* Fetch product info to populate all inputs */
   const fetchProduct = async () => {
@@ -153,7 +153,11 @@ export const EditProduct: React.FC = () => {
       {(isLoading || prodLoadIsLoading) && <Loader className="m-auto mt-3" />}
 
       {product && !prodLoadIsError && (
-        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <form
+          data-testid="productForm"
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+        >
           {/* <div className="mt-3 grid grid-cols-2 gap-4"> */}
           <div className="md:flex mb-4">
             <div className="w-full md:w-1/2 ">
@@ -305,8 +309,9 @@ export const EditProduct: React.FC = () => {
                     <input
                       key={field.id}
                       type="text"
-                      className={getInputClass("tags")}
+                      className={`${getInputClass("tags")} tag`}
                       placeholder="Enter Tag"
+                      data-testid={`tag-${field.id}`}
                       {...register(`tags.${index}.tag` as any, {
                         required: {
                           value: true,
@@ -319,6 +324,7 @@ export const EditProduct: React.FC = () => {
                         type="button"
                         className="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
                         onClick={() => append({ tag: "" })}
+                        data-testid="add-btn"
                       >
                         <PlusIcon className="h-4 w-4" />
                       </button>
@@ -328,6 +334,7 @@ export const EditProduct: React.FC = () => {
                         type="button"
                         className="ml-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
                         onClick={() => remove(index)}
+                        data-testid={`del-btn-${index}`}
                       >
                         <TrashIcon className="h-4 w-4" />
                       </button>
@@ -337,7 +344,7 @@ export const EditProduct: React.FC = () => {
                     (errors as Error)?.tags?.length > 0 &&
                     (errors as Error)?.tags[index].tag?.message && (
                       <span className="inline-flex text-sm text-red-700">
-                        {(errors as Error)?.tags[index].tag[index]?.message}
+                        {(errors as Error)?.tags[index].tag?.message}
                       </span>
                     )}
                 </>
