@@ -7,6 +7,8 @@
  - [React hooks form](https://www.youtube.com/watch?v=KejZXxFCe2k&list=PLC3y8-rFHvwjmgBr1327BA5bVXoQH-w5s&index=1)
  - [Tailwind dark/light theme](https://tailwindcss.com/docs/theme)
  - Use Docker to build project based on local and prod env vars
+ - Unit testing using RTL, Vitest, MSW (for mock API)
+ - Husky for pre-commit git hook
 
 ## Docker configuration
 
