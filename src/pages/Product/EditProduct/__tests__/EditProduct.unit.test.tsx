@@ -1,8 +1,8 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { vi } from "vitest";
-import { editProductData } from "../../mock/products/ProductsListMock";
-import { EditProduct } from "./EditProduct";
+import { editProductData } from "../../../../mock/products/ProductsListMock";
+import { EditProduct } from "../EditProduct";
 
 const queryclient = new QueryClient({
   defaultOptions: {

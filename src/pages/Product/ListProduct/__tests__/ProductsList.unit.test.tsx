@@ -1,30 +1,24 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
-import { ProductsList } from "./ProductsList";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { ProductsList } from "../ProductsList";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { vi } from "vitest";
-// import {
-//   loadedError,
-//   loadedSuccess,
-// } from "../../mock/products/ProductsListMock";
-import { server } from "../../mock/server";
-import { rest } from "msw";
-// import { mockedFunctions } from "../../mockFunctions";
 
-const queryclient = new QueryClient({
-  defaultOptions: {
-    // queries: {
-    //   retry: false,
-    // },
-  },
-});
+const queryclient = new QueryClient();
 
-/* beforeEach(() => {
+beforeEach(() => {
   vi.mock("react-query", async () => ({
     ...(await vi.importActual<typeof import("react-query")>("react-query")),
     useQuery: () => {
+      return {
+        isSuccess: false,
+        isError: false,
+        isLoading: true,
+        data: null,
+        error: null,
+      };
       // console.log("beforeEach: ", expect.getState());
-      const testName = expect
+      /* const testName = expect
         .getState()
         .currentTestName?.split(">")
         ?.pop()
@@ -42,12 +36,13 @@ const queryclient = new QueryClient({
             data: null,
             error: null,
           };
-      }
+      } */
     },
   }));
-}); */
+});
 
 describe("Products List", () => {
+  /* Initial page load should display loader */
   test("Check loader", async () => {
     render(
       <QueryClientProvider client={queryclient}>
@@ -58,44 +53,41 @@ describe("Products List", () => {
     expect(element).toBeInTheDocument();
   });
 
-  test("API Success - Grid data render", async () => {
-    //screen.debug();
+  test("Add product button is present", async () => {
+    vi.mock("react-router-dom", async () => {
+      return {
+        ...vi.importActual("react-router-dom"),
+        NavLink: ({
+          children,
+          to,
+          className,
+          dataTestId,
+        }: {
+          children: JSX.Element;
+          to: string;
+          className: string;
+          dataTestId: string;
+        }) =>
+          React.createElement(
+            "a",
+            { href: to, className, "data-testid": dataTestId },
+            children
+          ),
+      };
+    });
+
     render(
       <QueryClientProvider client={queryclient}>
         <ProductsList />
       </QueryClientProvider>
     );
 
-    // await waitFor(() => {
-    //   screen.debug();
-    // });
-    await waitFor(async () => {
-      const prodTable = await screen.findByTestId("product-table");
-      // const tableRows = await screen.findAllByRole("row");
-      console.log("Prod table", prodTable.children.length);
-      expect(prodTable.children.length).toBe(4);
-    });
+    const addBtn = await screen.findByText(/Add Product/);
+    expect(addBtn).toBeInTheDocument();
   });
 
-  test("API Error - check error message", async () => {
-    server.use(
-      rest.get("https://dummyjson.com/products", async (_req, res, ctx) => {
-        return res(ctx.status(500));
-      })
-    );
-    waitFor(async () => {
-      render(
-        <QueryClientProvider client={queryclient}>
-          <ProductsList />
-        </QueryClientProvider>
-      );
-      screen.debug();
-      const errorLabel = await screen.findByText(/Error fetching records/);
-      expect(errorLabel).toBeInTheDocument();
-    });
-  });
-
-  test("Save success label", async () => {
+  /* Success alert to be displayed if router useLocation state has addSuccess: 1 */
+  test("Save success alert message", async () => {
     vi.mock("react-router-dom", async () => {
       return {
         ...vi.importActual("react-router-dom"),

@@ -1,7 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import { PageLoader } from "./common/components/PageLoader";
-import { EditProduct } from "./pages/Product/EditProduct";
+import { EditProduct } from "./pages/Product/EditProduct/EditProduct";
 
 const Dashboard = lazy(() =>
   import("./pages/Dashboard").then((module) => {
@@ -10,7 +10,7 @@ const Dashboard = lazy(() =>
   })
 );
 const ProductsList = lazy(() =>
-  import("./pages/Product/ProductsList").then((module) => {
+  import("./pages/Product/ListProduct/ProductsList").then((module) => {
     // console.log("ProductsList module", module);
     return {
       default: module.ProductsList,
@@ -18,7 +18,7 @@ const ProductsList = lazy(() =>
   })
 );
 const AddProduct = lazy(() =>
-  import("./pages/Product/AddProduct").then((module) => ({
+  import("./pages/Product/AddProduct/AddProduct").then((module) => ({
     default: module.AddProduct,
   }))
 );

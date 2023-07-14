@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { AddProduct } from "./AddProduct";
+import { AddProduct } from "../AddProduct";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { vi } from "vitest";
 
