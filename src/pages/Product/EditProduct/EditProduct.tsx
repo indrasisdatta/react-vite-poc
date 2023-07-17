@@ -25,6 +25,8 @@ export const EditProduct: React.FC = () => {
   const [isOpenSucAlert, setIsOpenSucAlert] = useState(true);
   const { prodId } = useParams() || { prodId: null };
 
+  // console.log("useParams prodId", prodId);
+
   /* Fetch product info to populate all inputs */
   const fetchProduct = async () => {
     const { data } = await getProduct(prodId);
@@ -37,7 +39,7 @@ export const EditProduct: React.FC = () => {
     data: product,
   } = useQuery("product", fetchProduct);
 
-  console.log("Edit product: ", product);
+  // console.log(`Edit product for pid ${prodId}: `, product);
 
   const { register, control, handleSubmit, formState, reset } =
     useForm<FormValues>();
@@ -64,6 +66,7 @@ export const EditProduct: React.FC = () => {
   console.log("fieldArr", fields);
 
   const saveProduct = async (formData: FormValues) => {
+    console.log("Form saveProduct:", formData);
     const { data } = await updateProduct(formData);
     return data;
   };
@@ -123,7 +126,7 @@ export const EditProduct: React.FC = () => {
   console.log("Mutation check", { isLoading, error, isSuccess });
 
   if (isSuccess) {
-    navigate("/product", { state: { addSuccess: true } });
+    navigate("/product", { state: { editSuccess: true } });
   }
 
   return (

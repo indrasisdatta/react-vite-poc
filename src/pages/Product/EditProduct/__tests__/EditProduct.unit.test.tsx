@@ -1,6 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { vi } from "vitest";
 import { editProductData } from "../../../../mock/products/ProductsListMock";
 import { EditProduct } from "../EditProduct";
 
@@ -143,95 +142,6 @@ describe("Edit Product", async () => {
       fireEvent.click(deleteBtn1);
       tagInputs = await screen.findAllByTestId(/tag-/);
       expect(tagInputs).toHaveLength(3);
-    });
-  });
-
-  test("Form submit success", async () => {
-    type FormValues = {
-      title: string;
-      price: number;
-      description: string;
-      tags: [{ tag: string }];
-    };
-    const formData: FormValues = {
-      title: "Title 1",
-      price: 100,
-      description: "Desc",
-      tags: [{ tag: "tag1" }],
-    };
-    // const mockSubmit = vi.fn((data) => {
-    //   return Promise.resolve(data);
-    // });
-    const mockSubmit = vi.fn();
-
-    // const originalUseForm = useForm<FormValues>({
-    //   defaultValues: {
-    //     title: "",
-    //     price: 0,
-    //     description: "",
-    //     tags: [{ tag: "" }],
-    //   },
-    // });
-    // const useFormMock = vi.fn().mockReturnValue({
-    //   ...originalUseForm,
-    //   handleSubmit: (fn) => fn,
-    // });
-    // useForm.mockImplementation(useFormMock);
-
-    // const originalUseForm = useForm<FormValues>({
-    //   defaultValues: {
-    //     title: "",
-    //     price: 0,
-    //     description: "",
-    //     tags: [{ tag: "" }],
-    //   },
-    // });
-
-    // vi.doMock("react-hook-form", async () => {
-    //   return {
-    //     ...vi.importActual("react-hook-form"),
-    //     useForm: {
-    //       ...originalUseForm,
-    //       handleSubmit: vi.fn((data: any) => {
-    //         return Promise.resolve(data);
-    //       }),
-    //     },
-    //   };
-    // });
-
-    const onSubmit = mockSubmit(formData);
-    render(
-      <QueryClientProvider client={queryclient}>
-        <EditProduct {...onSubmit} />
-      </QueryClientProvider>
-    );
-    waitFor(async () => {
-      const titleInput = await screen.findByPlaceholderText(/Product Name/);
-      const priceInput = await screen.findByRole("spinbutton", {
-        name: /price/i,
-      });
-      const descInput = await screen.findByPlaceholderText(
-        /Product Description/
-      );
-      const tagInput = await screen.findByTestId(/tag-/);
-
-      fireEvent.change(titleInput, { target: { value: "Test title" } });
-      fireEvent.change(priceInput, { target: { value: "100.50" } });
-      fireEvent.change(descInput, {
-        target: { value: "Sample product description" },
-      });
-      fireEvent.change(tagInput, { target: { value: "Tag 1" } });
-
-      const form = screen.getByTestId("productForm");
-      fireEvent.submit(form);
-
-      expect(mockSubmit).toHaveBeenCalledTimes(1);
-      expect(mockSubmit).toHaveBeenCalledWith({
-        title: "Test title",
-        price: "100.50",
-        description: "Sample product description",
-        tags: [{ tag: "Tag 1" }],
-      });
     });
   });
 });

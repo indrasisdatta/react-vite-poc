@@ -12,10 +12,9 @@
     "test": "set REACT_APP_TEST_ENV=true && vitest",
     "test-check": "set REACT_APP_TEST_ENV=true && vitest --no-watch",
     "test:unit": "set REACT_APP_TEST_ENV=true && vitest -- '**/*.unit.test.tsx'",
-    "test-check:unit": "set REACT_APP_TEST_ENV=true && vitest --pattern='**/*.unit.test.tsx' --no-watch",
+    "test-check:unit": "set REACT_APP_TEST_ENV=true && vitest run -- '**/*.unit.test.tsx' --no-watch",
     "test:integration": "set REACT_APP_TEST_ENV=true && vitest -- '**/*.integration.test.tsx'",
-    "test:integration:addprod": "set REACT_APP_TEST_ENV=true && vitest -- '**/AddProduct.integration.test.tsx'",
-    "test-check:integration": "set REACT_APP_TEST_ENV=true && vitest --pattern='**/*.integration.test.tsx' --no-watch",
+    "test-check:integration": "set REACT_APP_TEST_ENV=true && vitest run -- '**/*.integration.test.tsx'",
     "prepare": "husky install",
     "coverage": "vite run --coverage"
   },

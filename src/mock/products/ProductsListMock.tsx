@@ -39,8 +39,24 @@ export const editProductData = {
   data: {
     id: 2,
     title: "iPhone X",
-    description: "Edit desc",
-    price: 100,
+    description: "iPhone X is awesome",
+    price: 59999,
+    discountPercentage: 17.94,
+    rating: 4.44,
+    stock: 34,
+    brand: "Apple",
+    category: "smartphones",
+  },
+};
+
+export const editProductDataIT = {
+  isError: false,
+  isLoading: false,
+  data: {
+    id: 4,
+    title: "iPhone X",
+    description: "iPhone X is awesome",
+    price: 59999,
     discountPercentage: 17.94,
     rating: 4.44,
     stock: 34,
