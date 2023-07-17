@@ -17,5 +17,13 @@ export const handlers = [
             ctx.status(200),
             ctx.json(editProductData.data)
         )
+    }),
+    /* Product add */
+    rest.post('https://dummyjson.com/products/add', async (_req, res, ctx) => {
+        return res(
+            ctx.status(200),
+            ctx.json(_req)
+        )
     })
+   
 ]

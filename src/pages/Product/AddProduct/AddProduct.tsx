@@ -41,6 +41,7 @@ export const AddProduct: React.FC = () => {
 
   const saveProduct = async (formData: FormValues) => {
     const { data } = await addProduct(formData);
+    console.log("saveProduct data", data);
     return data;
   };
 
@@ -97,7 +98,7 @@ export const AddProduct: React.FC = () => {
     }
     return classes;
   };
-  // console.log("Mutation check", { isLoading, isError, error });
+  console.log("Mutation check", { isLoading, isError, error, isSuccess });
 
   if (isSuccess) {
     navigate("/product", { state: { addSuccess: true } });
