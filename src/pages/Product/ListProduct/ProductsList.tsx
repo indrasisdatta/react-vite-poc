@@ -40,6 +40,14 @@ export const ProductsList: React.FC = () => {
             setIsOpen={setIsOpenErrAlert}
           />
         )}
+        {location.state && location.state.editSuccess && (
+          <SuccessAlert
+            className="mb-4 md:w-6/12"
+            successMsg="Product updated successfully."
+            isOpen={isOpenErrAlert}
+            setIsOpen={setIsOpenErrAlert}
+          />
+        )}
         <NavLink
           to={"/product/add"}
           className="rounded-md block bg-indigo-600 px-3 py-2 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
