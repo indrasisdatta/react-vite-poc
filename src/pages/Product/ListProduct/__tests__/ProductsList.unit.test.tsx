@@ -1,5 +1,4 @@
-import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { ProductsList } from "../ProductsList";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { vi } from "vitest";
@@ -86,28 +85,4 @@ describe("Products List", () => {
     const addBtn = await screen.findByText(/Add Product/);
     expect(addBtn).toBeInTheDocument();
   });
-
-  /* Success alert to be displayed if router useLocation state has addSuccess: 1 */
-  // test("Save success alert message", async () => {
-  //   vi.mock("react-router-dom", async () => {
-  //     return {
-  //       ...vi.importActual("react-router-dom"),
-  //       NavLink: ({ children, to }: { children: JSX.Element; to: string }) =>
-  //         React.createElement("a", { href: to }, children),
-  //       useLocation: () => ({
-  //         state: { addSuccess: 1 },
-  //       }),
-  //     };
-  //   });
-
-  //   await waitFor(() => {
-  //     render(
-  //       <QueryClientProvider client={queryclient}>
-  //         <ProductsList />
-  //       </QueryClientProvider>
-  //     );
-  //     const element = screen.getByText(/New product added/);
-  //     expect(element).toBeInTheDocument();
-  //   });
-  // });
 });
