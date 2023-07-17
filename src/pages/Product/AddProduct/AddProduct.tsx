@@ -3,9 +3,9 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { ArrowLeftIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { useMutation } from "react-query";
-import { addProduct } from "../../api/ApiService";
-import { ErrorAlert } from "../../common/components/ErrorAlert";
-import { Loader } from "../../common/components/Loader";
+import { addProduct } from "../../../api/ApiService";
+import { ErrorAlert } from "../../../common/components/ErrorAlert";
+import { Loader } from "../../../common/components/Loader";
 import { NavLink, useNavigate } from "react-router-dom";
 
 type FormValues = {
@@ -41,6 +41,7 @@ export const AddProduct: React.FC = () => {
 
   const saveProduct = async (formData: FormValues) => {
     const { data } = await addProduct(formData);
+    console.log("saveProduct data", data);
     return data;
   };
 
@@ -97,7 +98,7 @@ export const AddProduct: React.FC = () => {
     }
     return classes;
   };
-  // console.log("Mutation check", { isLoading, isError, error });
+  console.log("Mutation check", { isLoading, isError, error, isSuccess });
 
   if (isSuccess) {
     navigate("/product", { state: { addSuccess: true } });

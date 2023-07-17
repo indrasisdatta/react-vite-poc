@@ -9,7 +9,9 @@ RUN npm install
 # Copy everything from our local dir to the container image dir
 COPY . /react-vite-build/
 # Run unit test
-RUN npm run test-check
+RUN npm run test-check:unit
+# Run integration test
+RUN npm run test-check:integration
 # Prod build
 RUN npm run build 
 # Port 80 exposed

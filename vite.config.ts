@@ -8,13 +8,14 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: './tests/setup.ts'
+    setupFiles: './tests/setup.ts',
+    // reporters: ['html']
   },
   optimizeDeps: {
     exclude: ['react-hook-form'],
   },
   esbuild: {
-    drop: process.env.NODE_ENV !== 'development' ? ['console', 'debugger'] : []
+    drop: process.env.NODE_ENV == 'development' || process.env.NODE_ENV == 'test' ? [] : ['console', 'debugger']
   },
   server: {
     watch: { usePolling: true },

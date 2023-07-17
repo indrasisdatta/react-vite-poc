@@ -11,7 +11,12 @@
     "preview": "vite preview",
     "test": "set REACT_APP_TEST_ENV=true && vitest",
     "test-check": "set REACT_APP_TEST_ENV=true && vitest --no-watch",
-    "prepare": "husky install"
+    "test:unit": "set REACT_APP_TEST_ENV=true && vitest -- '**/*.unit.test.tsx'",
+    "test-check:unit": "set REACT_APP_TEST_ENV=true && vitest run -- '**/*.unit.test.tsx' --no-watch",
+    "test:integration": "set REACT_APP_TEST_ENV=true && vitest -- '**/*.integration.test.tsx'",
+    "test-check:integration": "set REACT_APP_TEST_ENV=true && vitest run -- '**/*.integration.test.tsx'",
+    "prepare": "husky install",
+    "coverage": "vite run --coverage"
   },
   "husky": {
     "hooks": {
@@ -38,6 +43,8 @@
     "@typescript-eslint/eslint-plugin": "^5.59.0",
     "@typescript-eslint/parser": "^5.59.0",
     "@vitejs/plugin-react": "^4.0.0",
+    "@vitest/coverage-v8": "^0.33.0",
+    "@vitest/ui": "^0.33.0",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.38.0",
     "eslint-plugin-react-hooks": "^4.6.0",

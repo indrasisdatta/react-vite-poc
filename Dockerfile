@@ -17,7 +17,10 @@ RUN npm install
 COPY . /react-vite-build/
 
 # Run unit test
-RUN npm run test-check
+RUN npm run test-check:unit
+
+# Run integration test
+RUN npm run test-check:integration
 
 # Prod build
 RUN npm run build

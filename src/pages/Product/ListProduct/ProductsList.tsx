@@ -1,10 +1,10 @@
 import { useQuery } from "react-query";
 import { NavLink, useLocation } from "react-router-dom";
-import { Product } from "../../models/Product";
-import { currencyFormat } from "../../utils/helpers";
-import { Loader } from "../../common/components/Loader";
-import { getProducts } from "../../api/ApiService";
-import { SuccessAlert } from "../../common/SuccessAlert";
+import { Product } from "../../../models/Product";
+import { currencyFormat } from "../../../utils/helpers";
+import { Loader } from "../../../common/components/Loader";
+import { getProducts } from "../../../api/ApiService";
+import { SuccessAlert } from "../../../common/SuccessAlert";
 import { useState } from "react";
 import { PencilIcon } from "@heroicons/react/24/solid";
 
@@ -40,13 +40,19 @@ export const ProductsList: React.FC = () => {
             setIsOpen={setIsOpenErrAlert}
           />
         )}
-        <NavLink to={"/product/add"}>
-          <button
-            type="button"
-            className="w-full rounded-md block bg-indigo-600 px-3 py-2 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Add Product
-          </button>
+        {location.state && location.state.editSuccess && (
+          <SuccessAlert
+            className="mb-4 md:w-6/12"
+            successMsg="Product updated successfully."
+            isOpen={isOpenErrAlert}
+            setIsOpen={setIsOpenErrAlert}
+          />
+        )}
+        <NavLink
+          to={"/product/add"}
+          className="rounded-md block bg-indigo-600 px-3 py-2 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          Add Product
         </NavLink>
       </div>
       <div>
