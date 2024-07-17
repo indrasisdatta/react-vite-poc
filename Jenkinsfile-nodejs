@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools { nodejs "NodeJS" }
     stages {
-        stage('Install') {
+        stage('Build') {
             steps {
                 echo 'Install npm packages...'
                 sh 'npm install'
@@ -14,16 +14,6 @@ pipeline {
                 sh 'npm run test-check:unit'
                 echo 'Run integration tests...'
                 sh 'npm run test-check:integration'
-            }
-        }
-        stage('Build') {
-            steps {
-                sh 'npm run build'
-            }
-        }
-        stage('Build image') {
-            steps {
-                sh 'docker-compose --env-file .env.prod up -d'
             }
         }
     }
