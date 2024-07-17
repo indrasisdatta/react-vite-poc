@@ -10,7 +10,10 @@ pipeline {
         }
         stage ('Test') {
             steps {
-                echo 'Test stage'
+                echo 'Run unit tests...'
+                sh 'npm run test-check:unit'
+                echo 'Run integration tests...'
+                sh 'npm run test-check:integration'
             }
         }
     }
