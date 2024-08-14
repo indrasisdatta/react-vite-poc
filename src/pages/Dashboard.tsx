@@ -1,7 +1,13 @@
+import { useTranslation } from "react-i18next";
+
 export const Dashboard = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="container mx-auto p-8">
       <h1 className="text-2xl font-bold mb-4">Welcome to Vite app</h1>
+      <h4 className="text-xl font-bold mb-4">{t("Welcome")}</h4>
+
       <div>
         <p>
           The goal is to create a simple POC app to familiarize with the
