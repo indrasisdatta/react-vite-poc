@@ -3,6 +3,7 @@ import { BrowserRouter, NavLink } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ThemeProvider } from "./Providers/ThemeProvider";
 import { ThemeSwitch } from "./common/components/ThemeSwitch";
+import Language from "./common/components/Language";
 
 const queryclient = new QueryClient();
 
@@ -31,7 +32,8 @@ export const App = () => {
                   </NavLink>
                 </div>
               </div>
-              <div>
+              <div className="flex">
+                <Language />
                 <ThemeSwitch />
               </div>
             </nav>
