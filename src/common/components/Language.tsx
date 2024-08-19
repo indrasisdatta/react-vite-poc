@@ -3,7 +3,7 @@ import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
 const Language = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const changeLanguage = (e: SyntheticEvent<HTMLElement>) => {
     i18n.changeLanguage((e.target as HTMLInputElement).value);
@@ -16,10 +16,10 @@ const Language = () => {
         onChange={changeLanguage}
       >
         <option value="en" selected={i18next.language.includes("en")}>
-          English
+          {t("lang.en")}
         </option>
         <option value="de" selected={i18next.language.includes("de")}>
-          German
+          {t("lang.de")}
         </option>
       </select>
     </div>
