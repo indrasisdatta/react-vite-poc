@@ -3,7 +3,10 @@ import { Trans, useTranslation } from "react-i18next";
 export const Dashboard = () => {
   const { t } = useTranslation();
 
-  const listItems: [] = t("dashboard.listItems", { returnObjects: true });
+  const listItems = t("dashboard.listItems", { returnObjects: true }) as
+    | string[]
+    | null;
+
   const count = 3;
 
   return (
@@ -12,14 +15,16 @@ export const Dashboard = () => {
       <div>
         <p>{t("dashboard.para1")}</p>
         <ul className="list-disc ml-4">
-          {listItems.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
+          {Array.isArray(listItems) ? (
+            listItems?.map((item, index) => <li key={index}>{item}</li>)
+          ) : (
+            <li>No data</li>
+          )}
         </ul>
         {/* Singular/plural texts using Trans component */}
         <p>
           <Trans i18nKey="dashboard.todoCount" count={count}>
-            To do task ({{ count }}).
+            To do task ({count}).
           </Trans>
         </p>
       </div>
