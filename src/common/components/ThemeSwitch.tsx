@@ -17,7 +17,7 @@ export const ThemeSwitch = () => {
   console.log("Theme isDark", isDark);
 
   return (
-    <div>
+    <div className="flex items-center">
       <label
         className="inline-block pl-[0.15rem] hover:cursor-pointer mr-2 "
         htmlFor="flexSwitchCheckDefault"

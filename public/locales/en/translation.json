@@ -1,0 +1,25 @@
+{
+  "title": "Welcome to react using react-i18next",
+  "description": {
+    "part1": "To get started, edit <1>src/App.js</1> and save to reload.",
+    "part2": "Switch language between english and german using buttons above."
+  },
+  "dashboard": {
+    "todoCount_one": "To do task ({{count}}).",
+    "todoCount_other": "To do tasks ({{count}}).",
+    "para1": "The goal is to create a simple POC app to familiarize with the following",
+    "listItems": [
+      "TS",
+      "Vite",
+      "React Query",
+      "React hook form",
+      "Tailwind CSS",
+      "React i18next",
+      "Dockerize build based on local and prod env vars"
+    ]
+  },
+  "lang": {
+    "en": "English",
+    "de": "German"
+  }
+}
