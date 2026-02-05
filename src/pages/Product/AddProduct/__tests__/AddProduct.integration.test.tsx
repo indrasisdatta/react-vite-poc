@@ -6,7 +6,7 @@ import {
   waitFor,
 } from "@testing-library/react";
 import { AddProduct } from "../AddProduct";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { vi } from "vitest";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 // import { mockedFunctions } from "../../../../mockFunctions";

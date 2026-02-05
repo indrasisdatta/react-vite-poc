@@ -5,7 +5,7 @@ import {
   screen,
   waitFor,
 } from "@testing-library/react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { EditProduct } from "../EditProduct";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { ProductsList } from "../../ListProduct/ProductsList";
@@ -20,8 +20,8 @@ const queryclient = new QueryClient({
 });
 
 // beforeEach(() => {
-//   vi.mock("react-query", async () => ({
-//     ...(await vi.importActual<typeof import("react-query")>("react-query")),
+//   vi.mock("@tanstack/react-query", async () => ({
+//     ...(await vi.importActual<typeof import("@tanstack/react-query")>("@tanstack/react-query")),
 //     useQuery: () => editProductData,
 //   }));
 // });

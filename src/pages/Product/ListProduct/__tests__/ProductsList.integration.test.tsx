@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { ProductsList } from "../ProductsList";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { server } from "../../../../mock/server";
 import { rest } from "msw";
 
