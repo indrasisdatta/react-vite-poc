@@ -1,13 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import { ProductsList } from "../ProductsList";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { vi } from "vitest";
 
 const queryclient = new QueryClient();
 
 beforeEach(() => {
-  vi.mock("react-query", async () => ({
-    ...(await vi.importActual<typeof import("react-query")>("react-query")),
+  vi.mock("@tanstack/react-query", async () => ({
+    ...(await vi.importActual<typeof import("@tanstack/react-query")>("@tanstack/react-query")),
     useQuery: () => {
       return {
         isSuccess: false,

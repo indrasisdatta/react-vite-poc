@@ -1,6 +1,6 @@
 import { AppRouter } from "./AppRouter";
 import { BrowserRouter, NavLink } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "./Providers/ThemeProvider";
 import { ThemeSwitch } from "./common/components/ThemeSwitch";
 import Language from "./common/components/Language";

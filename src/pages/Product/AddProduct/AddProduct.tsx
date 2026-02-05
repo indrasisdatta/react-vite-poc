@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { ArrowLeftIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { addProduct } from "../../../api/ApiService";
 import { ErrorAlert } from "../../../common/components/ErrorAlert";
 import { Loader } from "../../../common/components/Loader";

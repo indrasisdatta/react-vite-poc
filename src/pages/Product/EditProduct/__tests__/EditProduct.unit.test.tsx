@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { editProductData } from "../../../../mock/products/ProductsListMock";
 import { EditProduct } from "../EditProduct";
 
@@ -12,8 +12,8 @@ const queryclient = new QueryClient({
 });
 
 // beforeEach(() => {
-//   vi.mock("react-query", async () => ({
-//     ...(await vi.importActual<typeof import("react-query")>("react-query")),
+//   vi.mock("@tanstack/react-query", async () => ({
+//     ...(await vi.importActual<typeof import("@tanstack/react-query")>("@tanstack/react-query")),
 //     useQuery: () => editProductData,
 //   }));
 // });

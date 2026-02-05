@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from '@tanstack/react-query';
 import { NavLink, useLocation } from "react-router-dom";
 import { Product } from "../../../models/Product";
 import { currencyFormat } from "../../../utils/helpers";
@@ -20,10 +20,10 @@ export const ProductsList: React.FC = () => {
     return data;
   };
 
-  const { isSuccess, isError, isLoading, data, error } = useQuery(
-    "products",
-    fetchProducts
-  );
+  const { isSuccess, isError, isLoading, data, error } = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchProducts
+  });
 
   console.log("Check Products", isSuccess, isError, isLoading, data, error);
   console.log("Products: ", data);
