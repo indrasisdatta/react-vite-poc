@@ -2,6 +2,7 @@ import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import { PageLoader } from "./common/components/PageLoader";
 import { EditProduct } from "./pages/Product/EditProduct/EditProduct";
+import ListPosts from "./pages/Posts/ListPosts/ListPosts";
 
 const Dashboard = lazy(() =>
   import("./pages/Dashboard").then((module) => {
@@ -58,6 +59,16 @@ export const AppRouter = () => {
               <EditProduct />
             </Suspense>
           }
+        />
+      </Route>
+      <Route path="posts">
+        <Route
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <ListPosts />
+            </Suspense>
+          }
+          index
         />
       </Route>
     </Routes>
