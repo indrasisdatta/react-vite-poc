@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { PageLoader } from "./common/components/PageLoader";
 import { EditProduct } from "./pages/Product/EditProduct/EditProduct";
 import ListPosts from "./pages/Posts/ListPosts/ListPosts";
+import SampleSSE from "./pages/SampleSSE/SampleSSE";
 
 const Dashboard = lazy(() =>
   import("./pages/Dashboard").then((module) => {
@@ -71,6 +72,7 @@ export const AppRouter = () => {
           index
         />
       </Route>
+      <Route path="sample-sse" element={<SampleSSE />}></Route>
     </Routes>
   );
 };
