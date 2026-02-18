@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useMatches } from "react-router-dom";
 
 const SampleSSE = () => {
 
@@ -6,6 +7,10 @@ const SampleSSE = () => {
     const [fileContent, setFileContent] = useState('');
 
     const lastEventRef = useRef(null);
+
+    const matches = useMatches();
+
+    console.log('Matches: ', matches)
 
     // useEffect(() => {
     //     const eventSource = new EventSource(`http://localhost:4000/streaming-test`);

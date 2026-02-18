@@ -7,7 +7,7 @@ import Language from "./common/components/Language";
 import { Provider } from "react-redux";
 import { store } from "./store";
 
-const queryclient = new QueryClient();
+const queryclient: QueryClient = new QueryClient();
 
 export const App = () => {
   return (
