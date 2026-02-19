@@ -37,7 +37,7 @@ export const EditProduct: React.FC = () => {
     isError: prodLoadIsError,
     isLoading: prodLoadIsLoading,
     data: product,
-  } = useQuery({ queryKey: ["product"], queryFn: fetchProduct});
+  } = useQuery({ queryKey: ["product"], queryFn: fetchProduct });
 
   // console.log(`Edit product for pid ${prodId}: `, product);
 
@@ -77,7 +77,7 @@ export const EditProduct: React.FC = () => {
     isLoading,
     error,
     isSuccess,
-  } = useMutation(saveProduct);
+  } = useMutation({ mutationFn: saveProduct });
 
   const navigate = useNavigate();
 
@@ -125,9 +125,15 @@ export const EditProduct: React.FC = () => {
   };
   console.log("Mutation check", { isLoading, error, isSuccess });
 
-  if (isSuccess) {
-    navigate("/product", { state: { editSuccess: true } });
-  }
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     // Show success message for 1 second before navigating
+  //     const timer = setTimeout(() => {
+  //       navigate("/product", { state: { editSuccess: true } });
+  //     }, 3000);
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, [isSuccess, navigate]);
 
   return (
     <div className="container mx-auto p-8">
@@ -137,6 +143,12 @@ export const EditProduct: React.FC = () => {
         </NavLink>
         <span className="ml-3">Edit Product</span>
       </h1>
+      {isSuccess && (
+        <div className="bg-teal-100 border border-teal-500 text-teal-900 px-4 py-3 rounded relative mb-4" role="alert">
+          <strong className="font-bold">Success! </strong>
+          <span className="block sm:inline ml-1"> Product updated successfully.</span>
+        </div>
+      )}
       {prodLoadIsError && (
         <ErrorAlert
           errorMsg="Invalid product selected"
@@ -166,11 +178,10 @@ export const EditProduct: React.FC = () => {
             <div className="w-full md:w-1/2 ">
               <label
                 htmlFor="title"
-                className={`block text-sm font-medium leading-6 ${
-                  hasError("title")
-                    ? "text-red-600"
-                    : "text-gray-900 dark:text-gray-200"
-                }`}
+                className={`block text-sm font-medium leading-6 ${hasError("title")
+                  ? "text-red-600"
+                  : "text-gray-900 dark:text-gray-200"
+                  }`}
               >
                 Product Name
               </label>
@@ -208,22 +219,20 @@ export const EditProduct: React.FC = () => {
             <div className="w-full md:w-3/12">
               <label
                 htmlFor="price"
-                className={`block text-sm font-medium leading-6 ${
-                  hasError("price")
-                    ? "text-red-600"
-                    : "text-gray-900 dark:text-gray-200"
-                }`}
+                className={`block text-sm font-medium leading-6 ${hasError("price")
+                  ? "text-red-600"
+                  : "text-gray-900 dark:text-gray-200"
+                  }`}
               >
                 Price
               </label>
               <div className="mt-1">
                 <div className={getInputDivClass("price")}>
                   <span
-                    className={`px-4 py-1 bg-gray-200 border rounded-l-md ${
-                      hasError("price")
-                        ? "text-red-600 border-red-600"
-                        : "text-gray-900 "
-                    }`}
+                    className={`px-4 py-1 bg-gray-200 border rounded-l-md ${hasError("price")
+                      ? "text-red-600 border-red-600"
+                      : "text-gray-900 "
+                      }`}
                   >
                     $
                   </span>
@@ -259,11 +268,10 @@ export const EditProduct: React.FC = () => {
           <div className="mb-4">
             <div className="w-full">
               <label
-                className={`block text-sm font-medium leading-6 ${
-                  hasError("description")
-                    ? "text-red-600"
-                    : "text-gray-900 dark:text-gray-200"
-                }`}
+                className={`block text-sm font-medium leading-6 ${hasError("description")
+                  ? "text-red-600"
+                  : "text-gray-900 dark:text-gray-200"
+                  }`}
               >
                 Description
               </label>
@@ -293,11 +301,10 @@ export const EditProduct: React.FC = () => {
           </div>
           <div className="w-full md:w-1/2 ">
             <div
-              className={`flex justify-between text-sm font-medium leading-6 ${
-                hasError("tags")
-                  ? "text-red-600"
-                  : "text-gray-900 dark:text-gray-200"
-              }`}
+              className={`flex justify-between text-sm font-medium leading-6 ${hasError("tags")
+                ? "text-red-600"
+                : "text-gray-900 dark:text-gray-200"
+                }`}
             >
               <label>Tags</label>
             </div>

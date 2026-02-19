@@ -13,7 +13,7 @@ const ListPosts = () => {
 
     const RenderStrategy = {
         "loading": () => <p>Loading...</p>,
-        "error": (error) => <p>Something went wrong</p>,
+        "error": (error) => <p>{error || 'Something went wrong'}</p>,
         "empty": () => <p>No data found</p>,
         "success": (_, data) => <p>{data.length} records</p>
     };

@@ -26,6 +26,12 @@ const AddProduct = lazy(() =>
   }))
 );
 
+const CartList = lazy(() =>
+  import("./pages/Cart/CartList").then((module) => ({
+    default: module.default,
+  }))
+);
+
 export const AppRouter = () => {
   return (
     <Routes>
@@ -75,6 +81,14 @@ export const AppRouter = () => {
       </Route>
       <Route path="sample-sse" element={<SampleSSE />}></Route>
       <Route path="pdf-chat" element={<PdfChat />}></Route>
+      <Route
+        path="cart"
+        element={
+          <Suspense fallback={<PageLoader />}>
+            <CartList />
+          </Suspense>
+        }
+      />
     </Routes>
   );
 };

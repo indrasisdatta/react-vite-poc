@@ -51,7 +51,7 @@ export const AddProduct: React.FC = () => {
     isLoading,
     error,
     isSuccess,
-  } = useMutation(saveProduct);
+  } = useMutation({ mutationFn: saveProduct });
 
   const navigate = useNavigate();
 
@@ -131,11 +131,10 @@ export const AddProduct: React.FC = () => {
           <div className="w-full md:w-1/2 ">
             <label
               htmlFor="title"
-              className={`block text-sm font-medium leading-6 ${
-                hasError("title")
-                  ? "text-red-600"
-                  : "text-gray-900 dark:text-gray-200"
-              }`}
+              className={`block text-sm font-medium leading-6 ${hasError("title")
+                ? "text-red-600"
+                : "text-gray-900 dark:text-gray-200"
+                }`}
             >
               Prduct Name
             </label>
@@ -173,22 +172,20 @@ export const AddProduct: React.FC = () => {
           <div className="w-full md:w-3/12">
             <label
               htmlFor="price"
-              className={`block text-sm font-medium leading-6 ${
-                hasError("price")
-                  ? "text-red-600"
-                  : "text-gray-900 dark:text-gray-200"
-              }`}
+              className={`block text-sm font-medium leading-6 ${hasError("price")
+                ? "text-red-600"
+                : "text-gray-900 dark:text-gray-200"
+                }`}
             >
               Price
             </label>
             <div className="mt-1">
               <div className={getInputDivClass("price")}>
                 <span
-                  className={`px-4 py-1 bg-gray-200 border rounded-l-md ${
-                    hasError("price")
-                      ? "text-red-600 border-red-600"
-                      : "text-gray-900 "
-                  }`}
+                  className={`px-4 py-1 bg-gray-200 border rounded-l-md ${hasError("price")
+                    ? "text-red-600 border-red-600"
+                    : "text-gray-900 "
+                    }`}
                 >
                   $
                 </span>
@@ -225,11 +222,10 @@ export const AddProduct: React.FC = () => {
           <div className="w-full">
             <label
               htmlFor="description"
-              className={`block text-sm font-medium leading-6 ${
-                hasError("description")
-                  ? "text-red-600"
-                  : "text-gray-900 dark:text-gray-200"
-              }`}
+              className={`block text-sm font-medium leading-6 ${hasError("description")
+                ? "text-red-600"
+                : "text-gray-900 dark:text-gray-200"
+                }`}
             >
               Description
             </label>
@@ -257,11 +253,10 @@ export const AddProduct: React.FC = () => {
         </div>
         <div className="w-full md:w-1/2 ">
           <div
-            className={`flex justify-between text-sm font-medium leading-6 ${
-              hasError("tags")
-                ? "text-red-600"
-                : "text-gray-900 dark:text-gray-200"
-            }`}
+            className={`flex justify-between text-sm font-medium leading-6 ${hasError("tags")
+              ? "text-red-600"
+              : "text-gray-900 dark:text-gray-200"
+              }`}
           >
             <label>Tags</label>
           </div>
