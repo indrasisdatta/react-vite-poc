@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { useEffect, useRef, useState } from 'react'
 import { useMatches } from "react-router-dom";
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 const SampleSSE = () => {
 
@@ -9,9 +10,11 @@ const SampleSSE = () => {
 
     const lastEventRef = useRef(null);
 
-    const matches = useMatches();
+    const [_, setUserPref] = useLocalStorage("userPref");
 
-    console.log('Matches: ', matches)
+    // const matches = useMatches();
+
+    // console.log('Matches: ', matches)
 
     // useEffect(() => {
     //     const eventSource = new EventSource(`http://localhost:4000/streaming-test`);
@@ -44,6 +47,10 @@ const SampleSSE = () => {
         return () => eventSource.close();
     }, [])
 
+    const updateUserPref = () => {
+        setUserPref(new Date().getTime())
+    }
+
     return (
         <>
             <div>SampleSSE</div>
@@ -57,6 +64,7 @@ const SampleSSE = () => {
             }
             <h4>File contents:</h4>
             <pre>{fileContent}</pre>
+            <button onClick={updateUserPref}>Update userPref</button>
         </>
     );
 }

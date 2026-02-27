@@ -6,10 +6,15 @@ import { ThemeSwitch } from "./common/components/ThemeSwitch";
 import Language from "./common/components/Language";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 const queryclient: QueryClient = new QueryClient();
 
 export const App = () => {
+
+
+  const [userPref, _] = useLocalStorage("userPref");
+
   return (
     <Provider store={store}>
       <ThemeProvider>
@@ -36,6 +41,7 @@ export const App = () => {
                   </div>
                 </div>
                 <div className="flex">
+                  {userPref}
                   <Language />
                   <ThemeSwitch />
                 </div>
