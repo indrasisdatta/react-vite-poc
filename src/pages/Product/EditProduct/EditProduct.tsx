@@ -74,7 +74,7 @@ export const EditProduct: React.FC = () => {
   const {
     mutate: addMutation,
     // isError,
-    isLoading,
+    isPending,
     error,
     isSuccess,
   } = useMutation({ mutationFn: saveProduct });
@@ -123,7 +123,7 @@ export const EditProduct: React.FC = () => {
     }
     return classes;
   };
-  console.log("Mutation check", { isLoading, error, isSuccess });
+  console.log("Mutation check", { isPending, error, isSuccess });
 
   // useEffect(() => {
   //   if (isSuccess) {
@@ -165,7 +165,7 @@ export const EditProduct: React.FC = () => {
           setIsOpen={setIsOpenSucAlert}
         />
       )}
-      {(isLoading || prodLoadIsLoading) && <Loader className="m-auto mt-3" />}
+      {(isPending || prodLoadIsLoading) && <Loader className="m-auto mt-3" />}
 
       {product && !prodLoadIsError && (
         <form
@@ -363,7 +363,7 @@ export const EditProduct: React.FC = () => {
           </div>
           <div className="mt-6 flex items-center gap-x-6">
             <button
-              disabled={isLoading}
+              disabled={isPending}
               type="submit"
               className="rounded-md block bg-indigo-600 px-3 py-2 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >

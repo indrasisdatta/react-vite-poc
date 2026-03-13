@@ -1,5 +1,6 @@
 import { getPosts } from "./postsApi"
 import { createAsyncThunk } from "@reduxjs/toolkit"
+import { AxiosError } from "axios"
 
 export const fetchPosts = createAsyncThunk(
     "posts/fetchPosts", 
@@ -8,7 +9,8 @@ export const fetchPosts = createAsyncThunk(
             const res = await getPosts(page);
             return res.data;
         } catch (e) {
-            return rejectWithValue(e.response?.data || e.message)
+            const error = e as AxiosError;
+            return rejectWithValue(error.response?.data || error.message)
         }
     }
 );

@@ -12,6 +12,8 @@ export function useLocalStorage<T = string>(
         return (raw ?? defaultValue) as T;
     }
 
+    const getServerSnapshot = () => defaultValue as T;
+
     const subscribe = (callback: () => void) => {
         window.addEventListener('storage', callback);
         window.addEventListener('local-storage', callback);
@@ -21,7 +23,7 @@ export function useLocalStorage<T = string>(
         }
     }
 
-    const value = useSyncExternalStore(subscribe, getSnapshot);
+    const value = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
     const setValue = (val: T) => {
         localStorage.setItem(key, String(val));

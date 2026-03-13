@@ -1,14 +1,11 @@
 /* eslint-disable */
-import React, { useEffect, useRef, useState } from 'react'
-import { useMatches } from "react-router-dom";
+import { useEffect, useState } from 'react'
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 const SampleSSE = () => {
 
-    const [data, setData] = useState([]);
+    const [data] = useState([]);
     const [fileContent, setFileContent] = useState('');
-
-    const lastEventRef = useRef(null);
 
     const [_, setUserPref] = useLocalStorage("userPref");
 
@@ -48,7 +45,7 @@ const SampleSSE = () => {
     }, [])
 
     const updateUserPref = () => {
-        setUserPref(new Date().getTime())
+        setUserPref(new Date().getTime().toString())
     }
 
     return (

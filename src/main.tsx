@@ -1,8 +1,8 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { App } from "./App";
 import "./i18n";
+import { ErrorBoundary } from "./ErrorBoundary";
 
 if (process.env.NODE_ENV === "development") {
   if (
@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
+  <ErrorBoundary>
     <App />
-  </React.StrictMode>
+  </ErrorBoundary>
 );

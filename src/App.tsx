@@ -8,7 +8,18 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 
-const queryclient: QueryClient = new QueryClient();
+// Create QueryClient outside the component to prevent recreation
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      staleTime: 1000 * 60 * 5, // 5 minutes
+    },
+    mutations: {
+      retry: 1,
+    },
+  },
+});
 
 export const App = () => {
 
@@ -19,7 +30,7 @@ export const App = () => {
     <Provider store={store}>
       <ThemeProvider>
         <BrowserRouter>
-          <QueryClientProvider client={queryclient}>
+          <QueryClientProvider client={queryClient}>
             <header className="bg-white dark:bg-dark border-b-[1px] border-gray-300">
               <nav className="mx-auto flex justify-content-between p-3 lg:px-8">
                 <div className="flex items-center flex-shrink-0 text-black dark:text-white mr-6 hover:bg-gray-700">
