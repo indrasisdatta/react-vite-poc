@@ -5,6 +5,7 @@ import { EditProduct } from "./pages/Product/EditProduct/EditProduct";
 import ListPosts from "./pages/Posts/ListPosts/ListPosts";
 import SampleSSE from "./pages/SampleSSE/SampleSSE";
 import PdfChat from "./pages/PdfChat/PdfChat";
+import HabitTrackerContainer from "./pages/HabitTracker/HabitTrackerContainer";
 
 const Dashboard = lazy(() =>
   import("./pages/Dashboard").then((module) => {
@@ -81,6 +82,7 @@ export const AppRouter = () => {
       </Route>
       <Route path="sample-sse" element={<SampleSSE />}></Route>
       <Route path="pdf-chat" element={<PdfChat />}></Route>
+      <Route path="habit-tracker" element={<HabitTrackerContainer />}></Route>
       <Route
         path="cart"
         element={
