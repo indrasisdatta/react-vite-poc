@@ -4,44 +4,65 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "./Providers/ThemeProvider";
 import { ThemeSwitch } from "./common/components/ThemeSwitch";
 import Language from "./common/components/Language";
+import { Provider } from "react-redux";
+import { store } from "./store";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
-const queryclient = new QueryClient();
+// Create QueryClient outside the component to prevent recreation
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      staleTime: 1000 * 60 * 5, // 5 minutes
+    },
+    mutations: {
+      retry: 1,
+    },
+  },
+});
 
 export const App = () => {
+
+
+  const [userPref, _] = useLocalStorage("userPref");
+
   return (
-    <ThemeProvider>
-      <BrowserRouter>
-        <QueryClientProvider client={queryclient}>
-          <header className="bg-white dark:bg-dark border-b-[1px] border-gray-300">
-            <nav className="mx-auto flex justify-content-between p-3 lg:px-8">
-              <div className="flex items-center flex-shrink-0 text-black dark:text-white mr-6 hover:bg-gray-700">
-                <NavLink
-                  to="/"
-                  className="text-indigo-600 font-bold dark:text-white"
-                >
-                  Vite App
-                </NavLink>
-              </div>
-              <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-                <div className="text-sm lg:flex-grow">
+    <Provider store={store}>
+      <ThemeProvider>
+        <BrowserRouter>
+          <QueryClientProvider client={queryClient}>
+            <header className="bg-white dark:bg-dark border-b-[1px] border-gray-300">
+              <nav className="mx-auto flex justify-content-between p-3 lg:px-8">
+                <div className="flex items-center flex-shrink-0 text-black dark:text-white mr-6 hover:bg-gray-700">
                   <NavLink
-                    to="product"
-                    className="block mt-1 md:mt-4 lg:inline-block lg:mt-0 text-indigo-700 dark:text-teal-100 dark:hover:text-white mr-4"
+                    to="/"
+                    className="text-indigo-600 font-bold dark:text-white"
                   >
-                    Product
+                    Vite App
                   </NavLink>
                 </div>
-              </div>
-              <div className="flex">
-                <Language />
-                <ThemeSwitch />
-              </div>
-            </nav>
-          </header>
-          <AppRouter />
-          {/* <Outlet /> */}
-        </QueryClientProvider>
-      </BrowserRouter>
-    </ThemeProvider>
+                <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+                  <div className="text-sm lg:flex-grow">
+                    <NavLink
+                      to="product"
+                      className="block mt-1 md:mt-4 lg:inline-block lg:mt-0 text-indigo-700 dark:text-teal-100 dark:hover:text-white mr-4"
+                    >
+                      Product
+                    </NavLink>
+                  </div>
+                </div>
+                <div className="flex">
+                  {userPref}
+                  <Language />
+                  <ThemeSwitch />
+                </div>
+              </nav>
+            </header>
+            <AppRouter />
+            {/* <Outlet /> */}
+          </QueryClientProvider>
+        </BrowserRouter>
+      </ThemeProvider>
+    </Provider>
   );
 };

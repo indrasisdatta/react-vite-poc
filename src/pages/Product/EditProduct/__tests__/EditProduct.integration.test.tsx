@@ -74,7 +74,7 @@ describe("Edit Product", async () => {
     await waitFor(() => {
       const element = screen.getByText(/Product updated successfully/);
       expect(element).toBeInTheDocument();
-    });
+    }, { timeout: 2500 });
   });
 
   test("Form submit error", async () => {

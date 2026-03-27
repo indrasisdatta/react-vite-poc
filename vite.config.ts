@@ -14,6 +14,10 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['react-hook-form'],
   },
+  build: {
+    sourcemap: true,
+    minify: false  // Disable minification to debug
+  },
   esbuild: {
     drop: process.env.NODE_ENV == 'development' || process.env.NODE_ENV == 'test' ? [] : ['console', 'debugger']
   },

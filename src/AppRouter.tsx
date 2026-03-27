@@ -2,6 +2,10 @@ import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import { PageLoader } from "./common/components/PageLoader";
 import { EditProduct } from "./pages/Product/EditProduct/EditProduct";
+import ListPosts from "./pages/Posts/ListPosts/ListPosts";
+import SampleSSE from "./pages/SampleSSE/SampleSSE";
+import PdfChat from "./pages/PdfChat/PdfChat";
+import HabitTrackerContainer from "./pages/HabitTracker/HabitTrackerContainer";
 
 const Dashboard = lazy(() =>
   import("./pages/Dashboard").then((module) => {
@@ -20,6 +24,12 @@ const ProductsList = lazy(() =>
 const AddProduct = lazy(() =>
   import("./pages/Product/AddProduct/AddProduct").then((module) => ({
     default: module.AddProduct,
+  }))
+);
+
+const CartList = lazy(() =>
+  import("./pages/Cart/CartList").then((module) => ({
+    default: module.default,
   }))
 );
 
@@ -60,6 +70,27 @@ export const AppRouter = () => {
           }
         />
       </Route>
+      <Route path="posts">
+        <Route
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <ListPosts />
+            </Suspense>
+          }
+          index
+        />
+      </Route>
+      <Route path="sample-sse" element={<SampleSSE />}></Route>
+      <Route path="pdf-chat" element={<PdfChat />}></Route>
+      <Route path="habit-tracker" element={<HabitTrackerContainer />}></Route>
+      <Route
+        path="cart"
+        element={
+          <Suspense fallback={<PageLoader />}>
+            <CartList />
+          </Suspense>
+        }
+      />
     </Routes>
   );
 };
